@@ -1,0 +1,35 @@
+Feature: Friend management
+
+    Users should be able 'friend' and 'unfriend' each other 
+
+    Scenario: Create a friendship with an existing user
+    Given a user is on the user page
+    When a user clicks the 'add a friend' link
+    And the entered email address matches the email address of a registered user
+    Then the target user should be sent a friend request
+
+
+    Scenario: Create a friendship with someone who is not an existing user
+    Given a user is on the user page
+    When a user clicks the 'add a friend' link
+    And the entered email address does not match the address of a registered user
+    Then an invitation email should be sent to the targeted email address
+
+    Scenario: Accept a friend request
+    Given a user is on the user page
+    When the user clicks on a 'accept friend request' link
+    Then the system should like the two users as friends
+    And show a 'friend request accepted' message on the iniating user user page
+
+    Scenario: Deny a friend request
+    Given a user is on the user page
+    When the user clicks on 'deny friend request' link
+    Then the system should no longer show the request
+    And show a 'friend request denied' message in the initiating user user page
+
+    
+    Scenario: Unfriend a current friend
+    Given a user is on the user page
+    When the user clicks 'unfriend this person' 
+    Then the system should remove the friend relationship between the users
+    And the unfriended person should no longer appear on the screen

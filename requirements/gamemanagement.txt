@@ -1,0 +1,28 @@
+Feature: Game Management
+
+    Scenario: Create a New Game
+    Given a user is on the user page
+    When a user clicks 'Create Game' link 
+    Then a game should be generated
+    And the user should be allowed to choose friends to play the game
+    And the slected friends should receive email invitations to play the game
+    And the user should immediately play the generated game
+
+    Scenario: Play a game from an invitation
+    Given A user receives an emailed game invitation
+    When the user clicks the invitation link
+    Then the user should play the same game as the person that sent the invitation
+
+    Scenario: All players have played the game
+    Given a game was started
+    When the last player submits their word list
+    Then the server scores everyones word list
+    And the server sends an email to each participant with the results
+     
+     Scenario: A game is not completed by all players before it expires
+     Given a game was started
+     When the game timer expires before all players have played
+     Then the server scores all submitted word lists
+     And the server sends an email to each participant with the results
+
+    
